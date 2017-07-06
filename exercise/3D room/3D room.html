@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>3D ROOM</title>
+    <link href="style.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="bootstrap.css">
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="bootstrap.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/jquery/1.10.2/jquery.min.js"></script>
+</head>
+<body>
+<div class="root">
+    <div class="parent">
+        <div class="top"></div>
+        <div class="left"></div>
+        <div class="bottom"></div>
+        <div class="right"></div>
+        <div class="back"></div>
+    </div>
+</div>
+
+<div id="btn">
+    <ul>
+        <li>
+            键盘按键：
+        </li>
+        <li>
+            上：拉近距离
+        </li>
+        <li>
+            下：拉远距离
+        </li>
+        <li>
+            左：左转向
+        </li>
+        <li>
+            右：右转向
+        </li>
+    </ul>
+</div>
+
+<script>
+    var $ = function (selector) {
+        return document.querySelector(selector);
+    }
+    var root = $(".root");
+    var parent = $(".parent");
+    var buttons = $("#btn");
+    var nowVal = $("#nowVal");
+    var xyz = {
+        x: 0,
+        y: 0,
+        z: 0
+    }
+    var rotate = {
+        rotateY: 0,
+        rotate3d: {
+            x: 1,
+            y: 0,
+            z: 0,
+            rotate: 0
+        }
+    }
+    function TurnLeft() {
+        rotate.rotateY -= 5;
+        if (rotate.rotateY >= 360) {
+            rotate.rotateY -= 360;
+        }
+        if (rotate.rotateY < 0) {
+            rotate.rotateY += 360;
+        }
+        rotate.rotate3d.z = 1 * Math.sin(getRadianFromAngle(rotate.rotateY));
+        rotate.rotate3d.x = 1 * Math.cos(getRadianFromAngle(rotate.rotateY));
+        setAttributes();
+    }
+    function TurnRight() {
+        rotate.rotateY += 5;
+        if (rotate.rotateY >= 360) {
+            rotate.rotateY -= 360;
+        }
+        if (rotate.rotateY < 0) {
+            rotate.rotateY += 360;
+        }
+        rotate.rotate3d.z = 1 * Math.sin(getRadianFromAngle(rotate.rotateY));
+        rotate.rotate3d.x = 1 * Math.cos(getRadianFromAngle(rotate.rotateY));
+        setAttributes();
+    }
+    function getRadianFromAngle(angle) {
+        return angle * Math.PI / 180;
+    }
+    function goFrontAndGetNewValue() {
+        var radian = getRadianFromAngle(rotate.rotateY);
+        var x = Math.sin(radian) * 50;
+        var z = Math.cos(radian) * 50;
+        x = Number(x.toFixed(2));
+        z = Number(z.toFixed(2));
+        if (rotate.rotateY >= 360) {
+            rotate.rotateY -= 360;
+        } else if (rotate.rotateY < 0) {
+            rotate.rotateY += 360;
+        }
+        if (rotate.rotateY == 0) {
+            xyz.z -= 50;
+        } else if (rotate.rotateY == 90) {
+            xyz.x += 50;
+        } else if (rotate.rotateY == 180) {
+            xyz.z += 50;
+        } else if (rotate.rotateY == 270) {
+            xyz.x -= 50;
+        } else if (rotate.rotateY < 90) {
+            xyz.x += x;
+            xyz.z -= z;
+        } else if (rotate.rotateY < 180) {
+            xyz.x += x;
+            xyz.z -= z;
+        } else if (rotate.rotateY < 270) {
+            xyz.x += x;
+            xyz.z -= z;
+        } else if (rotate.rotateY < 360) {
+            xyz.x += x;
+            xyz.z -= z;
+        }
+    }
+    function goBackAndGetNewValue() {
+        var radian = getRadianFromAngle(rotate.rotateY);
+        var x = Math.sin(radian) * 50;
+        var z = Math.cos(radian) * 50;
+        x = Number(x.toFixed(2));
+        z = Number(z.toFixed(2));
+        if (rotate.rotateY >= 360) {
+            rotate.rotateY -= 360;
+        } else if (rotate.rotateY < 0) {
+            rotate.rotateY += 360;
+        }
+        if (rotate.rotateY == 0) {
+            xyz.z += 50;
+        } else if (rotate.rotateY == 90) {
+            xyz.x -= 50;
+        } else if (rotate.rotateY == 180) {
+            xyz.z -= 50;
+        } else if (rotate.rotateY == 270) {
+            xyz.x += 50;
+        } else if (rotate.rotateY < 90) {
+            xyz.x -= x;
+            xyz.z += z;
+        } else if (rotate.rotateY < 180) {
+            xyz.x -= x;
+            xyz.z += z;
+        } else if (rotate.rotateY < 270) {
+            xyz.x -= x;
+            xyz.z += z;
+        } else if (rotate.rotateY < 360) {
+            xyz.x -= x;
+            xyz.z += z;
+        }
+    }
+    function GoAhead() {
+        goFrontAndGetNewValue();
+        setAttributes();
+    }
+    function GoBackwards() {
+        goBackAndGetNewValue();
+        setAttributes();
+    }
+    function setAttributes() {
+        var transformValue1 = parent.style.transform;
+        var newString = 'translate3d(' + (-xyz.x) + 'px,' + 0 + 'px,' + (-xyz.z) + 'px)';
+        parent.style.transform = transformValue1.replace(/translate3d\([^)]+\)/, newString);
+        var originValue = String(250 + xyz.x) + 'px ' + String(250 + xyz.y) + 'px ' + String(xyz.z) + 'px';
+        parent.style['transform-origin'] = originValue;
+        var transformValue2 = parent.style.transform;
+        var newString = 'rotate3d(' + rotate.rotate3d.x + ',' + rotate.rotate3d.y + ','
+                + rotate.rotate3d.z + ',' + rotate.rotate3d.rotate + 'deg)';
+        parent.style.transform = transformValue2.replace(/rotate3d\([^)]+\)/, newString);
+        var transformValue3 = parent.style.transform;
+        var newString = 'rotateY(' + rotate.rotateY + 'deg)';
+        parent.style.transform = transformValue3.replace(/rotateY\([^)]+\)/, newString);
+    }
+    document.addEventListener("keydown", function (evt) {
+        if (!(evt.keyCode >= 37 && evt.keyCode <= 40)) {
+                return;
+        }
+        if (evt.keyCode === 38) {
+            GoAhead();
+        } else if (evt.keyCode === 40) {
+            GoBackwards();
+        } else if (evt.keyCode === 37) {
+            TurnLeft();
+        } else if (evt.keyCode === 39) {
+            TurnRight()
+        }
+        var transform = parent.style.transform;
+        var origin = parent.style['transform-origin'];
+    });
+    parent.style.transform = 'translate3d(0px,0px,0px) rotateY(0deg) rotate3d(1,0,0,0deg)';
+    parent.style['transform-origin'] = '250px 250px 0px';
+</script>
+
+</body>
+</html>
