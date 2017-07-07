@@ -1,0 +1,1355 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta charset="UTF-8">
+		<title>html5笔记-2</title>
+	</head>
+	<body>
+	<pre>
+		<a href="#14">14.CSS入门</a><br/>
+		<a href="#15,16">CSS选择器</a><br/>
+		<a href="#17">17.CSS颜色与度量单位</a><br/>
+		<a href="#18,19">CSS文本样式</a><br/>
+		<a href="#20,21">CSS盒模型</a><br/>
+		<a href="#22,23">CSS边框与背景</a><br/>
+		<a href="#24">24.CSS表格与列表</a><br/>
+		<a href="#25">25.CSS其他样式</a><br/>
+		<a href="#26">26.CSS3前缀和rem</a><br/>
+		<a href="#27">27.CSS文本效果</a><br/>
+		<a href="#28">28.CSS3渐变效果</a><br/>
+		<a href="#29">29.CSS3边框图片效果</a><br/>
+		<a href="#30,31">CSS3变形效果</a><br/>
+		<a href="#32">32.CSS3透视效果</a><br/>
+		<a href="#33">33.CSS3动画效果</a><br/>
+		<a href="#34,35">CSS传统布局</a><br/>
+		<a href="#36">36.CSS3多列布局</a><br/>
+		<a href="#37,38,39">CSS3弹性伸缩布局</a><br/>
+		<a href="#40">40.使用Emmet插件</a><br/>
+
+
+
+
+
+					
+
+	
+
+
+
+
+
+
+
+
+
+		<a id="14"><h3>14.CSS入门</h3></a><br/>
+		<p>1. 	创建CSS样式表的方式<br/>
+				1.1 内联样式<br/>
+					< p style="color:red;font-size:50px">...</p><br/>
+				1.2 内部样式定义<br/>
+					< style type="test/css"><br/>
+					p{<br/>
+						color:red;<br/>
+					}<br/>
+					< /style><br/>
+				1.3 引入外部样式文件<br/>
+					< link type="test/css" rel="stylesheet" href="1.html"><br/>
+				1.4 导入外部样式文件<br/>
+					< style type="test/css"><br/>
+						@impoort url(1.css);<br/>
+					< /style><br/>
+			2. 	样式叠加效果,优先级<br/>
+					内联 > 内部 > import > link<br/>
+					但是可以用   !important  强制设置优先级<br/>
+
+			3.样式的继承<br/>
+				只继承文字的外观（文字，颜色，字体等），但不继承布局样式<br/>
+				但可用  inherit  强制继承<br/>
+		</p>
+
+
+
+
+
+
+
+
+
+
+
+
+		<a id="15,16"><h3>CSS选择器</h3></a><br/>
+		<p>1. 	CSS选择器总汇<br/>
+					<img src="selector.png" width="700px" height="500px"><br/>
+		   2.1 	全局选择器<br/>
+		   			*{}<br/>
+		   2.2 	元素选择器<br/>
+		   			p{}<br/>
+		   2.3 	id选择器 	html页不要用同id名<br/>
+		   			#abc{}<br/>
+		   2.4 	类选择器 	批量设置<br/>
+		    		.abc{}<br/>
+		    		p.abc{}<br/>
+		    		类选择器调用多个样式<br/>
+		    			< span class="abc def">...< /span><br/>
+		   2.5 	属性选择器<br/>
+		   			[属性值],[href],[type="password"]<br/>
+		   2.6  属性值开头匹配属性值<br/>
+		   		2.6.1 	[href^="http"]{<br/>
+		   					color:red;<br/>
+		   				}	----- 	开头为http的字体变红<br/>
+		   		2.6.2	[href$=".com"]{<br/>
+		   					color:orange;<br/>
+		   				}	-----	结尾为com的字体为橘黄<br/>
+		   		2.6.3 	[href*="baidu"]<br/>
+		   					包含指定字符的匹配<br/>
+		   				}<br/>
+		   		2.6.4 	[class~="abc"]{<br/>
+		   					属性值具有多个值时，匹配其中一个属性选择器<br/>
+				   		}<br/>
+				2.6.6 	[lang|="en"]{<br/>
+							属性值具有多个值且使用“-”号连接符分割的其中一个值得属性选择器<br/>
+						}<br/>
+		   2.7 	复合选择器<br/>
+		   		2.7.1 	分组选择器<br/>
+		   				p,b,span{id,类,属性选择器可混合}<br/>
+		   		2.7.2 	后代选择器<br/>
+		   				p b{<br/>
+		   					b在P后n代都可以<br/>
+		   				}<br/>
+		   		2.7.3 	子选择器<br/>
+		   				p>b{<br/>
+		   					b必须为p的子一代<br/>
+		   				}<br/>
+		   		2.7.4 	相邻兄弟选择器<br/>
+		   				p+b{<br/>
+		   					匹配和第一个元素后面第一个元素<br/>
+		   					b的样式改变<br/>
+		   				}<br/>
+		   		2.7.5 	普通兄弟选择器<br/>
+		   				p~b{<br/>
+		   					匹配和第一个元素后面的所有元素<br/>
+		   				}<br/>
+		   2.8 	伪元素选择器<br/>
+		   		2.8.1 	::first-line块级首行<br/>
+		   				::first-line{<br/>
+		   					color:red;<br/>
+		   				}<br/>
+		   		2.8.2 	p::first-letter块级首字母(限制p标签)<br/>
+		   				p::first-letter{}<br/>
+		   		2.8.3 	::before文本前插入<br/>
+		   				::before{<br/>
+		   					content:'点击'；<br/>
+		   				}<br/>
+		   		2.8.4 	::after文本后插入<br/>
+		   				::after{<br/>
+		   					content:''；<br/>
+		   				}<br/>
+		   		2.8.5 	::selection<br/>
+		   				::selection{<br/>
+		   					当选择文字时触发选择<br/>
+		   				}<br/>
+		   3. 	伪类选择器汇总<br/>
+		   				<img src="f-selector-1.png" width="700px" height="500px"><br/>
+		   				<img src="f-selector-2.png"  width="700px" height="500px"><br/>
+		   3.1 	结构性伪类选择器		----	根据元素在文档中的位置选择元素<br/>
+		    	3.1.1 	根元素选择器		-----	少用<br/>
+		    			:root{}<br/>
+		    	3.1.2 	子元素选择器<br/>
+		    			ul > li:first-child{<br/>
+		    				选择第一个元素<br/>
+		    			}<br/>
+		    			ul > li:last-child{<br/>
+		    				选择最后一个元素<br/>
+		    			}<br/>
+		    			ul > li:only-child{<br/>
+		    				选择只有一个元素的子元素<br/>
+		    			}<br/>
+		    			ul > li:only-of-type{<br/>
+		    				选择只有一种指定类型的子元素的那个子元素<br/>
+		    			}<br/>
+		    			ul > li:nth-child{<br/>
+		    				选择第二个元素<br/>
+		    			}<br/>
+		    			ul > li:nth-last-child{<br/>
+		    				选择倒数第二个元素<br/>
+		    			}<br/>
+		    			ul > li:nth-of-type{<br/>
+		    				选择特定子元素的第二个元素<br/>
+		    			}<br/>
+		    			ul > li:nth-last-of-type{<br/>
+		    				选择特定子元素的倒数第二个元素<br/>
+		    			}<br/>
+		    			p:nth-child(2){
+		    				属于父元素的第二个子元素的p元素的选择器
+		    			}
+		   3.2 	UI伪类选择器		----	根据元素的状态匹配元素<br/>
+		   		3.2.1 	:enabled 	启用或禁用状态元素<br/>
+		   				input:enabled{}<br/>
+		   				input:disabled{}<br/>
+		   		3.2.2 	:checked 	选择勾选的input元素<br/>
+		   				input:checked{}<br/>
+		   		3.2.3 	:default<br/>
+		   				:default{<br/>
+		   					display:none;<br/>
+		   				}<br/>
+		   		3.2.4 	:valid和:invalid<br/>
+		   				input:valid{<br/>
+		   					匹配验证有效<br/>
+		   				}<br/>
+		   				input:invalid{<br/>
+		   					匹配验证无效<br/>
+		   				}<br/>
+		   		3.2.5 	:required<br/>
+		   				:required{<br/>
+		   					匹配必填项<br/>
+		   				}<br/>
+		   		3.2.6 	:optional<br/>
+		   				:optional{<br/>
+		   					匹配非必填<br/>
+		   				}<br/>
+		   3.3 	动态伪类选择器 	----	根据条件的改变匹配元素<br/>
+		   		3.3.1 	:link和:visited<br/>
+		   				a:link{<br/>
+		   					未访问时状态<br/>
+		   				}<br/>
+		   				a:visited{<br/>
+		   					访问后状态<br/>
+		   				}<br/>
+		   		3.3.2 	:hover<br/>
+		   				a:hover{<br/>
+		   					鼠标悬浮时，未点<br/>
+		   				}<br/>
+		   		3.3.3   :active<br/>
+		   				a:active{<br/>
+		   					鼠标点下不松时<br/>
+		   				}<br/>
+		   		3.3.4   :focus<br/>
+		   				a:focus{<br/>
+		   					对于文本框，获取到光标时的状态<br/>
+		   				}<br/>
+		   3.4 	其他伪类选择器<br/>
+		   		3.4.1 	:not<br/>
+		   				a:not([href*="baidu"]){<br/>
+		   					否定选择器，反选<br/>
+		   				}<br/>
+		   		3.4.2 	:empty<br/>
+		   				:empty{<br/>
+		   					匹配没有任何内容的元素<br/>
+		   				}<br/>
+		   		3.4.3 	:lang<br/>
+		   				:lang(en){<br/>
+		   					匹配语言<br/>
+		   				}<br/>
+		   		3.4.4 	:target<br/>
+		   				:target{<br/>
+		   					定位到锚点(id)时使用<br/>
+		   				}<br/>
+
+		</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+										
+		<a id="17"><h3>17.CSS颜色与度量单位</h3></a><br/>
+		<p>1. 	颜色表示<br/>
+					名称，二进制<br/>
+					color:rgb(r,g,b);<br/>
+					color:rgba(r,g,b,a);<br/>
+					color:hsl(色相,饱和度,透明度（%）);<br/>
+					color:hsla(色相,饱和度,透明度,透明度（0-1）)；<br/>
+		   2. 	度量表示<br/>
+		   			2.1 绝对长度单位<br/>
+		   				in		英尺<br/>
+		   				cm		厘米<br/>
+		   				mm 		毫米<br/>
+		   				pt		磅<br/>
+		   				pc		pica<br/>
+		   			2.2相对长度单位<br/>
+		   				em 		与元素字号挂钩<br/>
+		   				ex		与元素字体的“x高度”挂钩<br/>
+		   				rem 	与根元素的字号挂钩<br/>
+		   				px		像素，与分辨率挂钩<br/>
+		   				%		相对另一值的百分率<br/>
+		</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<a id="18,19"><h3>CSS文本样式</h3></a><br/>
+		<p>1. 	关于文字<br/>
+				1.1 字体大小<br/>
+						font-size:px<br/>
+						xx-small				设置字体大小，每个值从小到大的固定值<br/>
+						x-small<br/>
+						small<br/>
+						medium<br/>
+						large<br/>
+						x-large<br/>
+						xx-large<br/>
+						smaller				设置字体相对父元素字体的大小<br/>
+						larger<br/>
+						数字+px<br/>
+						数字+%				相对父元素的字体的百分比大小<br/>
+				
+				1.2 大小写<br/>
+						font-variant: normal 		以小型大写状态，则恢复小写<br/>
+					    			  small-caps					让小写以大写字母显示<br/>
+
+				1.3 倾斜<br/>
+						font-style: normal 		正常<br/>
+									italic 		斜体<br/>
+									oblique		让文字倾斜，在没有倾斜时<br/>
+
+				1.4 加粗<br/>
+						font-weight: normal<br/>
+									 bold<br/>
+									 bolder<br/>
+									 lighter<br/>
+									 100-900	600及之后为加,无单位<br/>
+
+				1.5 字体<br/>
+						font-family: 楷体，微软雅黑，宋体;<br/>
+
+				1.6 font 总写，简写<br/>
+				  		font: 50px bold red;<br/>
+
+		   2. 	web字体		----	服务器端字体<br/>
+		   		@font-face{<br/>
+		   			font-family:'abc';<br/>
+		   			src: url('字体');<br/>
+		   		}<br/>
+
+		   3. 	文本样式<br/>
+		   		3.1 装饰线条<br/>
+		   				text-decoration: none<br/>
+		   								 underline			底部加线条<br/>
+		   								 overline 			头部加线条<br/>
+		   								 line-through		中部加线条，删除线<br/>
+		   								 blink 				文本进行闪烁，不支持<br/>
+
+		   		3.2 大小写转换<br/>
+		   				text-transform: uppercase			将英文转换为大写字母<br/>
+		   								lowercase 			转换为小写字母<br/>
+		   								none<br/>
+		   								capitalize 			将英文单词首字母大写,(我是 html)<br/>
+
+		   		3.3 给文本添加阴影<br/>
+		   				text-shadow： 5px 5px 3px black;<br/>
+		   				第一个值为水平偏移，二为垂直偏移，三为模糊度（可选），四为阴影颜色（可选）<br/>
+
+		   4. 	文本控制<br/>
+		   		4.1 对齐方式<br/>
+		   				text-align: left,right,center,<br/>
+		   							justify 				内容两端对齐<br/>
+		   							start 					让文本处于开始边界<br/>
+		   							end 					处于结束边界<br/>
+
+		   		4.2 处理空白排版方式<br/>
+		   				white-space: normal					空白被压缩，文本自动换行<br/>
+		   							 nowrap					空白被压缩，文本不换行<br/>
+		   							 pre 					保留空白格式<br/>
+		   							 pre-line 				空白被压缩，文本会在排满或换行符时换行<br/>
+		   							 pre-wrap 				空白被保留，文本会在排满或换行符时换行<br/>
+
+		   		4.3 文本间距<br/>
+		   				letter-spacing: normal 				默认<br/>
+		   								长度值				如：数字+px<br/>
+
+		   		4.4 英文单词间距<br/>
+		   				word-spacing: normal 				默认<br/>
+		   								长度值				如：数字+px<br/>
+
+				4.5 行高<br/>
+		   				line-height: normal 				默认<br/>
+		   							 长度值					如：数字+px<br/>
+		   							 数值 					1，2，3<br/>
+		   							 %<br/>
+		   		4.6 过长的英文单词断开<br/>
+		   				word-wrap: normal 					默认<br/>
+		   						   break-word				断开<br/>
+
+		   		4.7 设置文本首行缩进<br/>
+		   				text-indent: normal 				默认<br/>
+		   							 长度值					如：数字+px<br/>
+		</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<a id="20,21"><h3>CSS盒模型</h3></a><br/>
+		<p>1. 	元素尺寸<br/>
+					width: auto,50px,20%;<br/>
+					height<br/>
+					min-width<br/>
+					min-height<br/>
+					max-width<br/>
+					max-height<br/>
+			
+		   2. 	元素内边距<br/>
+		   			padding-top,right,bottom,left;<br/>
+		   			padding:10px;							上下左右<br/>
+		   			padding:10px20px;						上下空10，左右20<br/>
+		   			padding：10px 20px 30px					上10，左右20，下30<br/>
+		   			padding：1px 2px 3px 4px;				上右下左<br/>
+
+		   3. 	外边距<br/>
+		   			margin 									偏移量不在元素内<br/>
+
+		   4. 	处理溢出<br/>
+		   			overflow-x 								水平溢出<br/>
+		   			overflow-y								垂直溢出<br/>
+		   			overflow
+		   			值：
+		   			auto 									有溢出则显示滚动条<br/>
+		   			hidden									溢出不显示<br/>
+		   			scroll									无论是否溢出，都有滚动条<br/>
+		   			visible 								溢出显示<br/>
+
+		   5. 	元素可见性<br/>
+		   			visibility: visible						默认值，元素在页面上可见<br/>
+		   						hidden						不可见，但占据空间<br/>
+		   						collapse					不可见，隐藏表格的行与列,且不占位，非表格同hidden<br/>
+
+		   6. 	元素盒模型 	----	display<br/>
+		   			6.1 块级元素 				---- 	block<br/>
+		   			6.2 行内元素（内联）			---- 	inline<br/>
+		   			6.3 行内-块元素（内联块）		----	inline-block<br/>
+		   						效果同图片，两个并排的内联块可拼接成一个<br/>
+		   			6.4 隐藏元素，不占据空间		----	none<br/>
+
+		   7. 	元素的浮动 	----	float<br/>
+		   			7.1 float： left<br/>
+		   						right<br/>
+		   						none<br/>
+
+		   			7.2 清除浮动<br/>
+		   				clean： left<br/>
+		   						float<br/>
+		   						both<br/>
+		</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<a id="22.23"><h3>CSS边框与背景</h3></a><br/>
+		<p>1. 	声明边框<br/>
+					border-width 		长度<br/>
+							长度值<br/>
+				   			百分数<br/>
+				   			thin 		细<br/>
+				   			medium		中<br/>
+		   					thick		粗<br/>
+					border-style		样式名称<br/>
+							solid		实线<br/>
+							none 		无<br/>
+							dashed		破折线<br/>
+							dotted 		圆点线<br/>
+							double 		双线<br/>
+							groove 		槽线边框<br/>
+							inset 		使元素内容具有内嵌效果<br/>
+							outset		使元素内容具有外凸效果<br/>
+							ridge 		脊线<br/>
+
+					border-color		颜色值<br/>
+					border<br/>
+					border-top<br/>
+					border-left-width<br/>
+
+		   2. 	圆角边框<br/>
+		   			border-radius: 10px; 		四条边角长度值或百分数<br/>
+		   			border-top-left-radius		左上边角<br/>
+		   			border-radius:10px 20px 30px 40px; 上右下左<br/>
+
+		   3. 	背景<br/>
+		   			3.1 	background-color: 颜色<br/>
+		   					background-transparent; 	设置透明色<br/>
+
+			   		3.2 	background-image: url(); 	平铺图片<br/>
+			   				background-image: none;<br/>
+							线性，放射性，，，，<br/>
+		   					background-repeat: repeat-x; 	水平平铺<br/>
+			  								   repeat-y; 	竖直平铺<br/>
+		 									   no-repeat;   一张图片<br/>
+
+		   			3.3 	background-position: left;		图片定位<br/>
+			   									 right<br/>
+												 bottom;<br/>
+		   										 center;<br/>
+			   									 right top;<br/>
+			   									 left botttom;<br/>
+
+					3.4 	background-size: auto  			默认值，图像以本尺寸显示<br/>
+											 cover 			等比例缩放，全覆盖后超出部分隐藏<br/>
+											 contain 		等比例缩放，较长边与容器重合<br/>
+											 百分数<br/>
+											 长度值<br/>
+
+					3.5 	background-attachment: fixed 	背景不随滚动条滚动<br/>
+												   scroll  	同滚<br/>
+
+					3.6 	background-origin: border-box  	在盒子外边距绘制背景<br/>
+											   padding-box  在盒子内边距绘制背景<br/>
+											   content-box 	在内容部分绘制<br/>
+
+					3.7 	background-clip: border-box; 	盒子内部裁剪<br/>
+											 padding-box; 	内边距盒子部分裁剪<br/>
+											 contant-box; 	内容部分裁剪<br/>
+
+					3.8 	background 简写<br/>
+											 background: red url() no-repeat center,,,;<br/>
+		</p>
+
+
+
+
+
+
+
+
+
+
+		<a id="24"><h3>24.CSS表格与列表</h3></a><br/>
+		<p>1. 表格样式<br/>
+				1.1 border-collapse: separate		单元格边框独立<br/>										 			 collapse  		合并<br/>
+
+				1.2 border-spacing：10px； 			单元格间距，前提为单元格独立<br/>
+
+				1.3 caption-side: top/bottom; 		表格标题位置，上或下<br/>
+
+				1.4 empty-cells: show 				空单元格 显示边框<br/>
+								 hide 				空单元格 不显示<br/>
+
+				1.5 table-layout: auto 				表格排版，内容过长时，拉伸<br/>
+								  fixed 			不拉伸<br/>
+
+				1.6 border 外边框设置<br/>
+
+				1.7 内边框设置 	<br/>
+				 		table tr th,table tr td {}<br/>
+
+		   2. 列表样式<br/>
+		   		2.1 list-style-type： none			无<br/>
+		   							  disc			实心圆<br/>
+		   							  circle		空心圆<br/>
+		   							  square		实心方块<br/>
+		   							  decimal		阿拉伯数字<br/>
+		   							  lower-roman	小写罗马数字<br/>
+		   							  upper-roman	大写罗马数字<br/>
+		   							  lower-alpha 	小写英文字母<br/>
+		   							  upper-alpha   大写英文字母<br/>
+		   							  等<br/>
+
+		   		2.2 list-style-image: none<br/>
+		   							  url(); 		以图片为标记<br/>
+
+		   		2.3 list-style-position: outside	标记位于内容框外部<br/>
+		   								 inside 	标记位于内容框内部<br/>
+
+		   		2.4 list-style： disc outside url();<br/>
+
+		   3. 其他功能<br/>
+		   		垂直对齐（针对表格）<br/>
+		   			vertical-align: baseline	内容对象与基线对齐<br/>
+		   							top			内容对象与顶端对齐<br/>
+		   							middle<br/>
+		   							bottom<br/>
+		   							sub 		垂直对齐文本的下标<br/>
+		   							super 		上标<br/>
+		   					普通元素可用：<br/>
+		   							数值<br/>
+		   							百分比<br/>
+				
+		</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<a id="25"><h3>25.CSS其他样式</h3></a><br/>
+		<p>1. 颜色和透明度<br/>
+				1.1 color<br/>
+
+				1.2 opacity 	----	透明度<br/>
+
+		   2. 盒子阴影和轮廓<br/>
+		   		2.1 box-shadow: hoffset 	阴影水平偏移量，长度值（必填）<br/>
+		   		同text-shadow	voffset 	阴影垂直偏移量（必填）<br/>
+		   						blur 		模糊值<br/>
+		   						spread 		阴影延伸半径<br/>
+		   						color 		阴影颜色<br/>
+		   						inset 		将外部阴影设为内部阴影<br/>
+		   				box-shadow :10px 20px 30px 40px 按上述顺序<br/>
+
+		   		2.2 outline: 轮廓样式<br/>
+			   			outline-color: 颜色<br/>
+			   			outline-offset: 长度<br/>
+		  				outline-style: 样式<br/>
+	 					outline-width: 长度<br/>
+	   					outline: 按上述顺序简写<br/>
+
+		   		2.3 光标样式<br/>
+		   				cursor:auto,default,none,context-menu,help,pointer,<br/>
+		   					   progress,wait,cell,crosshair,text,vertical-text,<br/>
+		   					   alias,copy,move,no-drop,not-allowed,e-resize,<br/>
+		   					   n-resize,ne-resize,nw-resize,s-resize,se-resize,<br/>
+		   					   sw-resize,w-resize,ew-resize,ns-resize,nesw-resize,<br/>
+		   					   nwse-resize,col-resize,row-resize,all-resize<br/>
+				
+		</p>
+
+
+
+
+
+
+		<a id="26"><h3>26.CSS3前缀和rem</h3></a><br/>
+		<p>1. CSS3前缀<br/>
+				Chrome,Safari  			-webkit-<br/>
+				Opera 					-o-<br/>
+				Firefox 				-moz-<br/>
+				Internet,Explorer 		-ms-<br/>
+				例：border-radius<br/>
+						-webkit-border-radius:50px;<br/>
+
+		   2. 单位 rem 	----	相对于根元素html，与html挂钩<br/>
+		   			以后最好用rem与百分比<br/>
+		   			html{<br/>
+		   				font-size:62.5%;	=> 10px;<br/>
+		   			}<br/>
+		   			p{<br/>
+		   				font-size:1.1rem;<br/>
+		   			}<br/>
+		</p>
+
+
+
+
+
+
+
+
+
+
+
+
+		<a id="27"><h3>27.CSS文本效果</h3></a><br/>
+		<p>1. text-shadow	文本阴影
+				1.1 box-shadow: hoffset 	阴影水平偏移量，长度值（必填）<br/>
+		   		同text-shadow	voffset 	阴影垂直偏移量（必填）<br/>
+		   						blur 		模糊值<br/>
+		   						spread 		阴影延伸半径<br/>
+		   						color 		阴影颜色<br/>
+		   						inset 		将外部阴影设为内部阴影<br/>
+		   				box-shadow :10px 20px 30px 40px 按上述顺序<br/>
+
+		   		1.2叠加<br/>
+		   		   text-shadow: 0px 0px 0 rgb();<br/>
+		   		   				1px 2px 0 rgb();<br/>
+		   		   				2px 4px 6 rgb();<br/>
+		   		   				...<br/>
+				
+		   2. 文本裁剪<br/>
+		   		text-overflow: clip 		裁剪时不添加“...”<br/>
+		   					   ellipsis 	添加<br/>
+		   	 	配合属性：white-space: nowrap;	不换行<br/>
+		   	 	 		 overflow: hidden;		溢出<br/>
+
+		   3. 文本描边 	---- 	实验阶段，只有-webkit-支持<br/>
+		   		-webkit-text-stroke 			简写<br/>
+		   		-webkit-text-stroke-width<br/>
+		   		-webkit-text-stroke-color<br/>
+
+		   4. 文本填充 	---- 	实验阶段，只有-webkit-支持<br/>
+		   		-webkit-text-fill-color:		填充颜色<br/>
+		   		和CSS3背景新特性搭配可产生渐变文字<br/>
+		   		<img src="change.png" width="700px" height="500px"><br/>
+		</p>
+
+
+
+
+
+
+
+
+
+
+
+
+		<a id="28"><h3>28.CSS3渐变效果</h3></a><br/>
+		<p>1. 线性渐变<br/>
+				linear-gradient: 方位: to top/to top right/to right/to bottom...<br/>
+								 起始色: 必填，颜色值<br/>
+								 末尾色: 必填，颜色值<br/>
+								 	可多色<br/>
+								 角度: 数字+deg<br/>
+				background-image:linear-gradient(to top right,red,yellow);<br/>
+				background-image:linear-gradient(red,yellow);<br/>
+				background-image:linear-gradient(50deg,red,yellow);<br/>
+				background-image:linear-gradient(-45deg,red 0%,yellow,blue 50%,green 100%);<br/>
+					% 还可用像素 orange 10px...<br/>
+
+				结合背景，使用透明渐变实现强大层次感<br/>
+					background-color:red;<br/>
+					background-image:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0));<br/>
+				重复渐变属性<br/>
+				background-image: repeating-linear-gradient(red 10px,yellow 30px);<br/>
+
+		   2.  径向渐变<br/>
+		   		radial-gradient: 方位: 中心点，用像素、百分比、固定值，或复合搭配使用<br/>
+								 起始色: 必填，颜色值<br/>
+								 末尾色: 必填，颜色值<br/>
+								 	可多色<br/>
+				background-image: radial-gradient(orange,green);<br/>
+				设置形状<br/>
+					background-image: radial-gradient(circle,orange,green);		正圆<br/>
+					background-image: radial-gradient(ellipse,orange,green);	椭圆<br/>
+				设置形状及发散方向<br/>
+					background-image: radial-gradient(circle at top , orange , green);<br/>
+					background-image: radial-gradient(circle at top right ,orange,green);<br/>
+				设置发散的距离<br/>
+					background-image: radial-gradient(circle closest-side, orange,green);<br/>
+					closest-side:		从圆心到离圆心最近的边<br/>
+					closest-corner:		从圆心到离圆心最近的角<br/>
+					farthest-side:		从圆心到离圆心最远的边<br/>
+					farthest-corner:	从圆心到离圆心最远的角<br/>
+					还可以用像素<br/>
+					background-image: radial-gradient(circle 50px, orange , green);<br/>
+					重复背景<br/>
+					background-image: repeating-radial-gradient(circle 50px, orange , green);<br/>			
+		</p>
+
+
+
+
+
+
+
+
+
+
+		<a id="29"><h3>29.CSS3边框图片效果</h3></a><br/>
+		<p>1. 属性解释<br/>
+				border-image-source 	背景图片地址<br/>
+				border-image-slice		切割背景图片，无单位<br/>
+					border-image-slice: 27 fill<br/>
+					也可用百分比，边长的比值<br/>
+					fill --- 显示完整图像<br/>
+				border-image-width		边框图片的宽度<br/>
+				border-image-repeat		边框背景图片的排列方式<br/>
+					stretch		通过上右下左设置四个边<br/>
+					repeat		平铺填充，超过则被截断<br/>
+					round		平铺填充，动态调整图片大小直至铺满<br/>
+					space		平铺填充，动态调整图片的间距直至铺满<br/>
+
+				border-image-outset		边框向外扩张<br/>
+				border-image<br/>
+					border-image:url() 27 30/27px round;<br/>
+		</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<a id="30,31"><h3>CSS3变形效果</h3></a><br/>
+		<p>1. transform				指定应用的变换<br/>
+				none				无变化<br/>
+				translate			在方向上平移元素（长度值或百分比）<br/>
+				translateX<br/>
+				translateY<br/>
+				scale				在方向上缩放元素（数值）<br/>
+				scaleX<br/>
+				scaleY<br/>
+				rotate				旋转元素（角度）默认基准点为中心点<br/>
+				skew				在方向上使元素倾斜一定的角度<br/>
+				skewX<br/>
+				skewY<br/>
+				matrix				指定自定义变换，通过计算公式得数据<br/>
+
+				transform: translate(200px,200px);<br/>
+				transform: scale(1.5);<br/>
+				transform: rotate(-45deg);<br/>
+				transform: skew(45deg, 20deg);<br/>
+				transform: marix(1,0,0,1,30,30);<br/>
+					transform: rotate(45deg) scale(1.5) ...;<br/>
+
+		   2. transform-origin		指定变换的起点（基准点）<br/>
+		   		百分数值<br/>
+		   		left,center,right		指定X轴的位置<br/>
+		   		top,center,bottom		指定Y轴的位置<br/>
+			   
+		   3. 3D变形		----	要加透视<br/>
+		   		translate3d(x,y,z)		3D方式平移元素<br/>
+		   		translateZ(z) 			<br/>
+		   		scale3d(x,y,z)			3D方式缩放一个元素	--单独设置无效，配合角度一起rotate<br/>
+		   		scaleZ(z)<br/>
+		   		rotate3d(x,y,z,a)		3D方式旋转元素(xyz取值0或1，表示是否启用xyz,旋转角度)<br/>
+		   		rotateX(a)<br/>
+		   		rotateY(a)<br/>
+		   		rotateZ(a)<br/>
+		   		perspective(长度值)		设置一个透视投影矩阵<br/>
+		   		matrix3d(多个值)			定义一个矩阵<br/>
+
+		   		transform: translate3d(200px,200px,100px);<br/>
+		   		transform: scale3d(1.5,1.5,2.5) rotateX(45deg);<br/>
+
+		   4. perspective-origin: 指定变换的起点（基准点）<br/>
+		   		百分数值<br/>
+		   		left,center,right		指定X轴的位置<br/>
+		   		top,center,bottom		指定Y轴的位置<br/>
+
+		   5. transform-style 	指定嵌套元素如何在3D空间呈现<br/>
+		   		flat:	表示所有子元素在2D平面呈现<br/>
+		   		preserve-3d:	表示子元素在2D空间中呈现<br/>
+
+		   6. perspective	透视值，设置查看者的位置，并将可视内容映射到一个视锥上，继而投放到一个2D平面上<br/>
+		   		none<br/>
+		   		长度值:500px<br/>
+		</p>
+
+
+
+
+
+
+
+
+		<a id="32"><h3>32.CSS3透视效果</h3></a><br/>
+		<p>1. 过渡效果	---		借由事件触发<br/>
+				transition-property: 			指定过度或动态模拟的CSS属性<br/>
+					none<br/>
+					all			默认值，指定元素所支持transition-property属性的样式<br/>
+					指定样式		指定支持transition-property的样式<br/>
+						transition-property:background-color, color, , ;<br/>
+
+				transition-duration:			指定完成过渡的时间<br/>
+					transition-duration:1s;<br/>
+
+				transition-timing-function:		缓动效果指定过渡的函数<br/>
+					ease:			默认值，元素样式从初始状态过渡到终止状态时速度由快到慢，逐渐变慢。<br/>
+					linear:			恒速<br/>
+					ease-in:		元素样式从初始状态过渡到终止状态时，速度越来越快<br/>
+					ease-out:		元素样式从初始状态过渡到终止状态时，速度越来越慢<br/>
+					ease-in-out:	元素样式从初始状态过渡到终止状态时，先加速，再减速<br/>
+					跳跃式过渡<br/>
+					step(5,end); / strp(5,strat);<br/>
+					两类过渡函数还可以自定义<br/>
+						transition-timing-function: ease；<br/>
+
+				transition-delay:				指定过渡开始出现的延迟时间<br/>
+					transition-delay:1s; 全部样式<br/>
+					transition-delay:0s, 1s, 0s;	单个设置<br/>
+
+				transition: 	简写	<br/>
+					1. transition: backgroung-color 1s ease 0s,color 1s ease 1s;	按样式设置<br/>
+					2. transition: all 1s ease 0s;		整体设置<br/>
+		</p>
+
+
+
+
+
+
+
+
+
+		
+		<a id="33"><h3>33.CSS3动画效果</h3></a><br/>
+		<p>1. 动画属性animation（复合属性）<br/>
+				animation-name					指定一个关键帧动画的名称<br/>
+				animation-duration				用来设置动画播放所需的时间<br/>
+				animation-timing-function		用来设置动画的播放方式<br/>
+				animation-delay					指定动画的延迟时间<br/>
+				animation-iteration-count		指定动画播放的循环次数<br/>
+				animation-direction				指定动画播放方向<br/>
+				animation-play-state			控制动画的播放状态<br/>
+				animation-fill-mode				设置动画的时间外属性<br/>
+				animation						简写<br/>
+				@keyframes 						声明一个动画<br/>
+					@keyframes name{<br/>
+						/*....*/<br/>
+					}<br/>
+					例<br/>
+		   2. @keyframes 百分比或 from to<br/>
+		   		@keyframes myani{<br/>
+						0%{<br/>
+							background-color: white;<br/>
+							margin-left: 0px;<br/>
+						}<br/>
+						100%{<br/>
+							background-color: black;<br/>
+							margin-left: 100px;<br/>
+						}<br/>
+					}<br/>
+
+		   3. animation-name<br/>
+		   		none:		默认值，没有指定任何动画<br/>
+		   		INDEX:		是由@keyframes指定创建的动画名称<br/>
+
+		   4. animation-duration 	播放时间<br/>
+		   		animation-duration: 1s;<br/>
+
+		   5. animation-timing-function		动画的播放方式<br/>
+		   		ease:    		过渡速度由快到慢<br/>
+		   		ease-in:		由快到慢并加速<br/>
+		   		ease-out:		速度越来越慢<br/>
+		   		ease-in-out:	先加速，再减速<br/>
+		   		linear: 		恒速<br/>
+		   		cubic-bezier:	自定义<br/>
+
+		   6. animation-delay		延迟时间<br/>
+		   		animation-delay: 1s;<br/>
+
+		   7. animation-iteration-count 	循环次数<br/>
+		   		animation-iteration-count: 次数/infinite(无限次);<br/>
+
+		   8. animation-direction 	设置播放方向交替<br/>
+		   		normal: 		默认值，每次播放向前<br/>
+		   		alternate: 		一次向前，一次向后，交替进行<br/>
+
+		   9. animation-play-state<br/>
+		   		animation-play-state: paused; 	停止播放动画<br/>
+
+		   10. animation-fill-mode 		播放后不再返回<br/>
+		   		none 			按预期进行和结束<br/>
+		   		forwards		动画结束后继续应用最后关键帧位置，即不返回<br/>
+		   		backforwards	动画结束后继续应用最后关键帧位置，即返回<br/>
+		   		both 			根据情况产生forwards或backforwards的效果<br/>
+
+		   11. animation: 		简写<br/>
+		   		animation: myani(name) 1s ease 2 alternate 2s(延迟) both;<br/>
+
+		   	<img src="animation-jr.png" width="700px" height="500px"><br/>
+		</p>
+		
+
+
+
+
+
+
+
+
+
+
+
+		<a id="34,35"><h3>CSS传统布局</h3></a><br/>
+		<p>1. 1024-28/1280-28<br/>
+				996	    1252<br/>
+		   
+		   2. 表格布局<br/>
+		   		固定布局：给定px；<br/>
+		   		流体布局：用百分比；<br/>
+
+		   3. 浮动布局<br/>
+		   		采用float和clear两个属性<br/>
+		   		3.1 固定布局：给定px；<br/>
+		   			body { width: 960px; }<br/>
+		   			aside { width: 200px;<br/>
+		   					float: left;<br/>
+		   				  }<br/>
+		   			section { width: 80%;<br/>
+		   					  float:fight;<br/>
+		   					}<br/>
+		   			footer { clear:both; }<br/>
+
+		   		3.2 流体布局：用百分比；<br/>
+		   			body { width: auto; }<br/>
+		   			aside { width: 20%; }<br/>
+		   			section { width: 80%; }<br/>
+
+		   4. 定位布局<br/>
+		   		4.1 static:			默认值，无定位<br/>
+		   		
+		   		4.2 absolute: 		绝对定位，脱离文档流，以窗口文档左上角(0,0)为起点，不占位，使用top,right,bottom,left<br/>
+		   				position: absolute;<br/>
+		   				top: 20px;<br/>
+		   				left 20px;<br/>
+		   		
+		   		4.3 relative:		相对定位，以自己为基准点(0,0)，不脱离文档流，但是占用未偏移时的位置，占位偏移，使用top,right,bottom,left<br/>
+		   		
+		   		4.4 fixed:			以窗口参考定位，脱离文档流，不占位，以窗口左上角(0,0)为起点，而不是文档，使用top,right,bottom,left<br/>
+				
+				4.5 z-index: 设置层次; auto/数字--数字大的层次高<br/>
+				/**   若想即脱离文档流，又以父元素（body为例）为参考点，还要绝对定位     **/<br/>
+					第一步：将需要设置参考点的父元素设置为相对，且不设置坐标<br/>
+					body{<br/>
+						position: relative;<br/>
+					}<br/>
+					第二步：如果父元素设置了参考点，子元素的绝对定位将以它为基准<br/>
+					header{<br/>
+						position: absolute;<br/>
+						top: 0px;<br/>
+						left: 0px;<br/>
+					}<br/>
+				/**  	*******************************************************		**/<br/>
+
+		   5. box-sizing<br/>
+		   		content-box: 默认值，border和padding设置后用于元素的总长度，不含于<br/>
+		   		border-box： border和padding设置后不用于元素的总长度，含于<br/>
+		   		完整版：<br/>
+		   			-webkit-box-sizing: border-box;<br/>
+		   			-moz-box-sizing: border-box;<br/>
+		   			-ms-box-sizing: border-box;<br/>
+		   			box-sizing: border-box;<br/>
+
+		   6. resize 	更改元素尺寸大小<br/>
+		   		none 			默认值，不允许用户调整元素大小<br/>
+		   		both 			用户可以调节元素的宽度和高度<br/>
+		   		horizontal 		用户可以调节元素的宽度<br/>
+		   		vertical		用户可以调节元素的高度<br/>
+		   		一般普通元素，默认值是不允许的。但如果是表单类的textarea元素，默认是允许的。而普通元素需要设置overflow: auto,<br/>
+		   		配合resize才会出现可拖拽的图形。即overflow: auto; resize: both;<br/>
+		</p>
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<a id="36"><h3>36.CSS3多列布局</h3></a><br/>
+		<p>1. columns多列布局属性<br/>
+				columns 		集成column-width和column-count两个属性<br/>
+				column-width 	列宽<br/>
+				column-count 	定义分列列数<br/>
+				column-gap 		列间距<br/>
+				column-rule		列边框<br/>
+				column-span 	多列布局中子元素跨列效果，firefox不支持<br/>
+				column-fill 	控制每列的列高，主流浏览器不支持<br/>
+				完整形式：<br/>
+					-webkit-columns: 150px 4;<br/>
+					-moz-columns: 150px 4;<br/>
+					columns: 150px 4;<br/>
+					其中 150 是能显示的最小大小<br/>
+
+		   1.1 column-width: 数字px/auto;<br/>
+		   	   column-count: 列数/auto;<br/>
+		   		如果没有设置列数，只有宽度，则自动计算列数；<br/>
+		   		如果设置了宽度和列数，则在实际宽度大于设置宽度的前提下，以列数为主；<br/>
+
+		   1.2 column-gap 	列间距<br/>
+
+		   1.3 column-rule  分割线，自适应，浮于上一层，宽度不影响布局<br/>
+		   		column-rule：宽度，类型，颜色；<br/>
+
+		   1.4 column-span:none/all;<br/>
+		   		none: 	不跨列<br/>
+		   		all: 	跨列<br/>
+
+		</p>
+
+
+
+
+
+
+
+
+
+		<a id="37,38,39"><h3>CSS3弹性伸缩布局</h3></a>
+		<p>1. 旧版本
+				display: box			将容器盒模型作为块级弹性伸缩盒显示
+						 inline-box		将容器盒模型作为内联级弹性伸缩盒显示
+					-webkit-box;
+					-moz-box;
+
+
+		   1.1 box-orient 	主要实现盒子内部元素的流动方向
+		   			horizontal 		伸缩项目从左到右水平排列
+		   			vertical 		伸缩项目从上到下垂直排列
+		   			inline-axis		伸缩项目沿着内联轴排列
+		   			block-axis		伸缩项目沿着块轴排列显示
+		   		-moz-box-orient:horizontal;
+
+
+		   1.2 box-direction 	设置伸缩容器中的流动顺序
+		   			normal: 	默认值，正常顺序
+		   			reverse: 	逆序
+		   		-moz-box-direction:reverse;
+
+
+		   1.3 box-pack		用于伸缩项目的分布方式
+		   			start 		伸缩项目以起始点靠齐
+		   			end			伸缩项目以结束点靠齐
+		   			center		伸缩项目以中心点靠齐
+		   			justify		伸缩项目平局分布，两边排列，-webkit-支持，-moz-不支持
+		   		-moz-box-pack: start;
+
+
+		   1.4 box-align  	用于处理伸缩容器的额外空间
+		   			start		伸缩项目以顶部为基准，清理下部额外空间
+		   			end			伸缩项目以底部为基准，清理上部额外空间
+		   			center		伸缩项目以中部为基准，平均清理上下部额外空间
+		   			baseline 	伸缩项目以基线为基准，清理额外的空间
+		   			stretch		伸缩项目填充整个容器，默认
+		   		-moz-box-align: start;
+
+
+		   1.5 box-flex	 	使用浮点数分配伸缩项目的比例
+		   			数值
+		   		-moz-box-flex: 2;
+
+
+
+		   1.6 box-ordinal-group 	设置伸缩项目的显示位置
+		   		p:nth-child(1){
+		   			-moz-box-ordinal-group: 3;
+		   		}
+
+
+
+		   2. 	混合过度版	主要针对IE10
+				display: flexbox;				将容器盒模型作为块级弹性伸缩盒显示（混合版本）
+						 inline-flexbox;		将容器盒模型作为内联级弹性伸缩盒显示（混合版本）
+					display: -ms-flexbox;
+
+
+		   2.1 	flex-direction 		设置伸缩项目的排列方式
+		   				row					设置从左到右排列
+		   				row-reverse			设置从右到左排列
+		   				column				设置从上到下排列
+		   				column-reverse		设置从下到上排列
+
+
+		   2.2 	flex-wrap   		设置无法容纳时，自动换行
+		   				nowrap				默认值，都在一行或一列显示
+		   				wrap				伸缩项目无法容纳时，自动换行
+		   				wrap-reverse		伸缩项目无法容纳时，自动换行，方向和wrap相反
+
+
+
+		   2.3 	flex-flow			排列方向和控制换行的简写形式
+		   			-ms-flex-flow: row wrap;
+
+
+		   2.4 	flex-pack 			设置伸缩项目的对齐方式
+		   				start		伸缩项目以起始点靠齐
+		   				end			伸缩项目以结束点靠齐
+		   				center		伸缩项目以中心点靠齐
+		   				justify 	伸缩项目平局分布
+		   			-ms-flex-pack: start;
+
+
+		   2.5 	flex-align  	用于处理伸缩容器的额外空间
+		   			start			伸缩项目以顶部为基准，清理下部额外空间
+		   			end				伸缩项目以底部为基准，清理上部额外空间
+		   			center			伸缩项目以中部为基准，平均清理上下部额外空间
+		   			baseline 		伸缩项目以基线为基准，清理额外的空间
+		   			stretch			伸缩项目填充整个容器，默认
+		   		-ms-flwx-align: start;
+
+
+
+
+		   2.6 	flex 			用于控制伸缩容器的比例分配
+		   			设置比例分配：
+		   			p:nth-child(1){
+		   				-ms-flex: 1;
+		   			}
+
+		   			p:nth-child(2){
+		   				-ms-flex: 3;
+		   			}
+
+		   			p:nth-child(3){
+		   				-ms-flex: 1;
+		   			}
+
+
+
+
+		   2.7 	flex-order		控制伸缩项目出现的顺序
+		   			p:nth-child(1){
+		   				-ms-flex-order: 2;
+		   			}
+
+		   			p:nth-child(2){
+		   				-ms-flex-order: 3;
+		   			}
+
+		   			p:nth-child(3){
+		   				-ms-flex-order: 1;
+		   			}
+
+
+
+ 
+		   3. 	新版本 		无需前缀
+		   		display: flex;				将容器盒模型作为块级弹性伸缩盒显示（混合版本）
+						 inline-flex;		将容器盒模型作为内联级弹性伸缩盒显示（混合版本）
+					display: flex;
+
+
+
+
+		   3.1 	flex-direction 		设置伸缩项目的排列方式
+		   				row					设置从左到右排列
+		   				row-reverse			设置从右到左排列
+		   				column				设置从上到下排列
+		   				column-reverse		设置从下到上排列
+
+
+		   3.2 	flex-wrap   		设置无法容纳时，自动换行
+		   				nowrap				默认值，都在一行或一列显示
+		   				wrap				伸缩项目无法容纳时，自动换行
+		   				wrap-reverse		伸缩项目无法容纳时，自动换行，方向和wrap相反
+
+
+
+		   3.3 	flex-flow			排列方向和控制换行的简写形式
+		   			flex-flow: row wrap;
+
+
+
+		   3.4 	justify-content 	设置伸缩项目的对齐方式
+		   				flex-start			伸缩项目以起始点靠齐
+		   				flex-end			伸缩项目以结束点靠齐
+		   				center				伸缩项目以中心点靠齐
+		   				space-between 		伸缩项目平局分布
+		   				space-around 		同上，但两端保留一半的空间
+		   			justify-content: flex-end;
+
+
+		   3.5 	align-items		  	用于处理伸缩容器的额外空间
+		   				flex-start			伸缩项目以顶部为基准，清理下部额外空间
+		   				flex-end			伸缩项目以底部为基准，清理上部额外空间
+		   				center				伸缩项目以中部为基准，平均清理上下部额外空间
+		   				baseline 			伸缩项目以基线为基准，清理额外的空间
+		   				stretch				伸缩项目填充整个容器，默认
+		   			align-itmes: flex-start;
+
+
+
+
+		   3.6 	align-self 			用于清理额外空间，但它是单独设置某一个伸缩项目的。其属性与和align-items一致
+		   				p:nth-child(2){
+		   					align-self: center;
+		   				}
+
+
+
+		   3.7 	flex 			用于控制伸缩容器的比例分配
+		   			设置比例分配：
+		   			p:nth-child(1){
+		   				flex: 1;
+		   			}
+
+		   			p:nth-child(2){
+		   				flex: 3;
+		   			}
+
+		   			p:nth-child(3){
+		   				flex: 1;
+		   			}
+
+
+
+
+		   3.8 	order		控制伸缩项目出现的顺序
+		   			p:nth-child(1){
+		   				order: 2;
+		   			}
+
+		   			p:nth-child(2){
+		   				order: 3;
+		   			}
+
+		   			p:nth-child(3){
+		   				order: 1;
+		   			}
+		</p>
+
+
+
+
+		<a id="40"><h3>40.使用Emmet插件</h3></a>
+
+
+
+
+
+
+
+
+
+
+</pre>
+</body>
+</html>

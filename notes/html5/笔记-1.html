@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta charset="UTF-8">
+		<title>html5笔记-1</title>
+	</head>
+	<body>
+		<a href="#3">3.文本元素</a>
+		<a href="#4">4.超链接和路径</a>
+		<a href="#5">5.分组元素</a>
+		<a href="#6">6.表格</a>
+		<a href="#7">7.块级元素</a>
+		<a href="#8">8.嵌入元素</a>
+		<a href="#9">9.音频和视频</a>
+		<a href="#10，11，12">10.表单元素</a>
+		<a href="#13">13.全局属性和其它</a>
+
+		
+
+
+
+
+
+
+
+
+		<h3><a id="3">3.文本元素</a></h3>
+		<p> 1.  ! + tab<br/>
+			2.  html lang="zh-cn"<br/>
+			3.  meta charset="UTF-8"<br/>
+			4.  Ctrl + ?   =>   注释<br/>
+			5.  Ctrl + /    =>   取消注释<br/>
+			6.  wbr    =>    安全换行<br/>
+			7.  s\del  =>    删除线<br/>
+			8.  u\ins  =>    下划线<br/>
+			9.  code   =>    计算机代码片段<br/>
+      			var    =>    编程语言中的变量<br/>
+      			samp   =>    程序或计算机的输出<br/>
+      			kbd    =>    用户的输入<br/>
+      					-----必须在lang="en"下体现<br/>
+			10. abbr   =>    缩写<br/>
+						-----无效果<br/>
+			11. dfn    =>    表示定义术语<br/>
+						-----倾斜<br/>
+			12. q      =>    引用<br/>
+						-----加引号<br/>
+			13. cite   =>    引用其他作品标题<br/>
+						-----加粗<br/>
+			14. ruby   =>    语言元素  含 rp  rt<br/>
+                        -----可用于将汉语拼音放于汉字上方<br/>
+			15. bdo    =>    文字方向    dir="rtl"  "ltr"<br/>
+			16. mark   =>    突出显示文本  黄底黑字<br/>
+			17. time   =>    时间 ------无效果<br/>
+			18. span   =>    表示一般文本<br/>
+		</p>
+
+
+
+
+
+
+
+
+
+
+
+		<h3><a id="4">4.超链接和路径</a></h3>
+		<p>	1. 	a: <br/>
+					href<br/>
+           	   	 	hreflang<br/>
+           			media<br/>
+           			rel<br/>
+          			target:     _blank<br/>
+                    	         _self<br/>
+                        	     _parent<br/>
+                            	 _top<br/>
+          			type<br/>
+			2.  相对路径   <br/>
+						当前路径  ./<br/>
+                        当前路径子目录   xxx/...<br/>
+                        当前路径孙子目录   xxx/xxx/...<br/>
+                        当前目录父目录   ../<br/>
+                        当前目录爷爷目录   ../../<br/>
+			3.  锚点设置  <br/>
+      			链接加锚点<br/>
+      				链接：	< a href="#1">第一章< /a> --><br/>
+       				锚点：	< a name="1 ">< /a >  或 < a id="1">< /a> --><br/>
+		</p>
+
+
+
+
+
+
+
+
+
+
+
+		<h3><a id="5">5.分组元素</a></h3>
+		<p> 1. 	blockquote 		引自他出的大段内容<br/>
+                             	首尾缩进，有段落间隙<br/>
+			2. 	pre 			展现格式化内容<br/>
+                  				大致按代码格式显示<br/>
+			3.  ul \ ol \ dl \ dt \ dd------列表<br/>
+			4.  figure-----使用插图 图片名用figcaption<br/>
+    			< figure><br/>
+               		< figcaption>图片名< /figcaption><br/>
+               		< img src="1.jpg"><br/>
+       			< /figure><br/>
+		</p><br/>
+
+
+
+
+
+
+
+
+
+
+
+		<h3><a id="6">6.表格</a></h3>
+		<p> table<br/>
+			1. 	thead ---- 标题行<br/>
+        		< thead><br/>
+            		< tr><br/>
+                    	< th>表头1< /th><br/>
+            	        < th>表头2< /th><br/>
+               		< /tr><br/>
+        		< thead><br/>
+			2. 	tbody ----- 表格主体<br/>
+       			< tbody><br/>
+           			tr td   除表头表尾后表的数据部分<br/>
+        		< /tbody> --><br/>
+			3. 	tfoot ----- 表脚<br/>
+       			< tr><br/>
+                	< td>表尾< /td><br/>
+        		< /tr> --><br/>
+			4. 	tr  -----  一行单元格<br/>
+			5. 	th  -----  标题行单元格<br/>
+			6. 	td  -----  单元格<br/>
+			7. 	col -----  一列<br/>
+			8. 	colgroup  ----  一组列<br/>
+                     	    	用于设置一列的属性<br/>
+      	 		法一： <br/>
+                	< colgroup style="...;" span="1></ colgroup><br/>
+        		法二：<br/>
+                 	< colgroup><br/>
+                        < col>  =>  占位符<br/>
+                        < col style="....;" span="1/2/3....."><br/>
+                    < /colgroup> <br/>
+			9. 	caption---------表格标题<br/>
+			10. 合并单元格----- colspan     合并成一行<br/>
+                               rowspan    合并成一列<br/>
+		</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<h3><a id="7">7.块级元素</a></h3>
+		<p>	1. 	header 		表示首部，主要设置页面的标头部分，包括，LOGO、标题、导航等<br/>
+			2. 	footer 		表示尾部，包括，版权声明，友情链接等<br/>
+			3. 	hgroup 		组合标题<br/>
+          			< hgroup><br/>
+             		   	< h1>< /h1><br/>
+                    	< h4>< /h4><br/>
+         	 		< /hgroup> --><br/>
+			4. 	section 	文档主题部分<br/>
+			5. 	nav 		导航部分<br/>
+			6. 	article 	一个独立成篇的文档<br/>
+                          	可以包含各个部分<br/>
+			7. 	aside 		生成注释 ， 本身也是导航<br/>
+			8. 	address 	小文档的联系方式<br/>
+			9. 	details  	生成详情区域<br/>
+  			   	summary 	在其内部生成说明标签<br/>
+     				------大多数未支持<br/>
+		</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<h3><a id="8">8.嵌入元素</a></h3>
+		<p> 1. 	img			嵌入图片<br/>
+					src<br/>
+					alt<br/>
+					width<br/>
+					height<br/>
+					ismap		创建服务器端分区响应图<br/>
+								< a href="index.html"><br/>
+								< img src="1.jpg" ismap><br/>
+								< /a><br/>
+					usemap		关联map元素,与下结合<br/>
+			2. 	map		定义客户端分区响应图
+					<img src="./map.png" width="700px" height="400px"><br/>
+			3. 	area		表示一个用户客户端分区响应图的区域<br/>
+			4. 	audio		表示一个音频资源<br/>
+			5. 	video		表示一个视频资源		第九节讲<br/>
+			6. 	iframe		嵌入一个文档<br/>
+			7. 	embed		用插件在HTML中嵌入内容<br/>
+							flash 插件
+			8. 	canvas		生成一个动态的图形画布<br/>
+			9. 	meter 		嵌入数值在许可值范围背景中的图形表示<br/>
+							< meter value="12" min="34" max="56" low="" high="" optomum="">< /meter>
+							min和max表示边界范围，low表示小于它的值过低,high表示大于它的值过高,optimum最佳值
+			10. object 		在HTML文档中嵌入内容		类似embed<br/>
+			11. param 		表示将通过object元素传递给插件的参数<br/>
+			12. progress 	嵌入目标进展或任务完成情况的图形表示	进度条<br/>
+							< progress value="" max="100">< /progress>
+							value初值	max最大值总值
+			13. source 		表示媒体资源<br/>
+			14. svg 		表示结构化矢量内容<br/>
+			15. track 		表示媒体的附加轨道（例如字幕）<br/>
+		</p>
+
+
+
+
+
+
+
+
+
+
+
+
+		<h3><a id="9"></a></h3>
+		<p>1. 	video 		视频播放<br/>
+							****  webm mp4  ****<br/>
+							< video src="test.webm" controls autoplay loop muted poster="img.png" preload="none">< /video><br/>
+							src 		播放地址<br/>
+							width 		<br/>
+							height<br/>
+							autoplay 	自动播放<br/>
+							preload 	预先载入视频<br/>
+										none			什么都不加载，点击时加载<br/>
+										metadata 		播放之前只能加载元数据（宽高，第一帧）<br/>
+										auto			直接加载<br/>
+							controls 	显示播放控件<br/>
+							loop 		循环<br/>
+							muted 		静音<br/>
+							poster 		指定视频载入时第一帧图片<br/>
+							***  兼容多个浏览器  ***<br/>
+								<img src="./jianrong.png" width="700" height="400"><br/>
+		   2. 	audio 		音频播放<br/>
+		   					****  .mp3 .m4a .ogg .wav  ****<br/>
+		   					< audio src="test.mp3" controls autoplay></ audio><br/>
+		   					src<br/>
+		   					autoplay<br/>
+		   					preload<br/>
+		   					controls 	加控件<br/>
+		   					***  兼容  ***<br/>
+		</p>
+
+
+
+
+
+
+
+
+										
+		<h3><a id="10，11，12">表单元素</a></h3><br/>
+		<p>1. 	form 		表示HTML表单<br/>
+					action			表示表单提交的页面<br/>
+					method			表示表单的请求方式<br/>
+									post	用表单提交<br/>
+									< form method="post">< /form><br/>
+									get		用超链接提交<br/>
+					enctype			浏览器对发送给服务器的数据所采用的编码格式<br/>
+									application/x-www-form-urlencoded	默认编码，不能将文件上传到服务器<br/>
+									multipart/form-data		用于上传文件到服务器<br/>
+									text/plain		未规范编码，不建议使用<br/>
+					name			设置表单名称，以便程序调用<br/>
+					target 			_blank,_self,_parent,_top<br/>
+					autocomplete 	设置浏览器记住用户输入的数据，实现自动完成表单，默认为on时自动完成，否为off<br/>
+					novalidate 		设置是否执行客户端数据有效性检查<br/>
+		   2.1 	input 		收集用户输入数据的控件<br/>
+		   			autofocus		让光标聚焦在某个input元素上，让用户直接输入<br/>
+		   			disabled 		禁用input元素<br/>
+		   			autocomplete 	单独设置input元素的自动完成功能<br/>
+		   			form 			让表单外的元素和指定的表单挂钩提交，用id连接<br/>
+		   			type 			input元素的类型<br/>
+		   					text					单行文本<br/>
+		   						maxlength			最大长度<br/>
+		   						size				文本框宽度<br/>
+		   						value 				默认值<br/>
+		   						readonly			只读可用<br/>
+		   						name<br/>
+		   						list      			建议值，为文本框提供datalist的默认值<br/>
+		   						<img src="list.png" width="700px" height="500px"><br/>
+		   						required 			要求必须填写<br/>
+		   						placeholder			输入字符的提示<br/>
+		   					password	 			密码框<br/>
+		   						属性与text同<br/>
+		   					search 					搜索框<br/>
+		   						与text同<br/>
+		   					sumbit,reset,button 	按钮<br/>
+		   						formaction 		覆盖form元素的action属性<br/>
+		   						formenctype 	覆盖form元素的enctype属性<br/>
+		   						formmethod 		覆盖form元素的method属性<br/>
+		   						formtarget 		覆盖form元素的target属性<br/>
+		   						formnovalidate  覆盖form元素的novalidate属性<br/>
+		   					number,range 			数值框<br/>
+		   						min<br/>
+		   						max<br/>
+		   						step				步长<br/>
+		   						readonly			只读<br/>
+		   						value				初始值<br/>
+		   						list				同text的list<br/>
+		   						required 			要求必须输入一个值<br/>
+		   					checkbox/radio 			复选框/单选框（name一致）<br/>
+		   						checked				初始时是否勾选<br/>
+		   						required			必须勾选<br/>
+		   						value				设置复选框、单选框勾选状态时提交的数据，值，但默认时为on<br/>
+		   					image,color 			一个图片按钮，颜色按钮<br/>
+		   						< input type="image" src=""><br/>
+		   						提交时提交热点区<br/>
+		   						alt<br/>
+		   						width<br/>
+		   						height<br/>
+		   						formaction 		覆盖form元素的action属性<br/>
+		   						formenctype 	覆盖form元素的enctype属性<br/>
+		   						formmethod 		覆盖form元素的method属性<br/>
+		   						formtarget 		覆盖form元素的target属性<br/>
+		   						formnovalidate  覆盖form元素的novalidate属性<br/>
+		   					email,tel,url 			生成一个检测电子邮件，号码，网址的文本框<br/>
+		   						限制输入的格式<br/>
+		   					时间类					获取日期和时间<br/>
+		   						date<br/>
+		   						month<br/>
+		   						time<br/>
+		   						week<br/>
+		   						datetime<br/>
+		   						dstetime-local<br/>
+		   						其属性与number同，但大多数浏览器不支持<br/>
+		   						最好用JQuery等前端库来实现<br/>
+		   					hidden					生成一个隐藏控件<br/>
+		   						显示是隐藏值，提交时显示值<br/>
+		   					file 					生成一个上传控件<br/>
+		   						accept 				指定接受的MIME类型（image/gif，image/jpeg,image/png....）<br/>
+		   						required 			必须提供一个值<br/>
+		   			name 			input元素名称<br/>
+		   			value 			默认起始值<br/>
+		   2.2	textarea    输入多行文本的控件<br/>
+		   			name<br/>
+		   			form 		若在表单外，则与表单挂钩<br/>
+		   			readonly<br/>
+		   			disabled 	禁用<br/>
+		   			maxlength<br/>
+		   			autofocus 	获取焦点<br/>
+		   			placeholder 设置输入时的提示信息<br/>
+		   			rows		设置行数<br/>
+		   			cols 		设置列数<br/>
+		   			wrap 		设置是否插入换行符，有soft和hard<br/>
+		   			required 	设置必须输入值，否则无法通过验证<br/>
+		   2.3 	select 		用来提供一组固定的选项,生成下拉列表框<br/>
+		   			option  	提供一个选项<br/>
+		   			name 		名称<br/>
+		   			value 		值<br/>
+		   			disabled 	禁用<br/>
+		   			form  		若在表单外，则与表单挂钩<br/>
+		   			size 		大小<br/>
+		   			multiple    多选<br/>
+		   			autofocus 	获取焦点<br/>
+		   			required 	选择验证，设置后必须选择才能通过<br/>
+		    		optgroup 	表示一组相关的option元素，用label标签分类，内含option，selected<br/>
+		   2.6 	button 		按钮<br/>
+		   			type	submit		提交<br/>
+		   						form 			指定按钮关联的表单<br/>
+		   						formaction 		覆盖form元素的action属性<br/>
+		   						formenctype 	覆盖form元素的enctype属性<br/>
+		   						formmethod 		覆盖form元素的method属性<br/>
+		   						formtarget 		覆盖form元素的target属性<br/>
+		   						formnovalidate  覆盖form元素的novalidate属性<br/>
+		   					reset		重置<br/>
+		   					button  	普通按钮<br/>
+		   2.7 	datalist 	定义一组提供给用户的建议值<br/>
+		   2.8	fieldset  	表示一组表单元素,用于分组<br/>
+		   			name<br/>
+		   			form<br/>
+		   			disabled<br/>
+		   2.9 	legend 		表示fieldset元素的说明性标签,给分组加标题<br/>
+
+		   2.10	label 		表示表单元素的说明标签<br/>
+					< label>用户名：< input name="user">< /input>< /label><br/>
+					或
+					< label for="uu">用户名：< /label><br/>
+					< input name="user" id="uu">< /input><br/>
+		   2.11	output 		表示计算结果<br/>
+		   2.12 表单验证<br/>
+		   		<img src="formtest.png" width="700px" height="500px"><br/>			
+		</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<a id="13"><h3>13.全局属性和其它</h3></a><br/>
+		<p>1. 	实体			用实体代码表示特殊意义的字符<br/>
+							<img src="mark.png" width="700px" height="500px"><br/>
+		   2. 	元数据 meta类<br/>
+		   3. 	全局属性<br/>
+	   				id名 		一个页面唯一<br/>
+	   				class属性 	归类，分类设置<br/>
+	   				accesskey	表单的快捷键，用于定位光标，windows+alt+指定键<br/>
+	   						< input type="text" accesskey="n 等指定键"><br/>
+	   				contenteditable="true" 	用于表单，可修改文本<br/>
+	   				dir 		表单，设置文本左到右（ltr）或右到左（rtl）<br/>
+	   				hidden 		隐藏<br/>
+	   				lang  		全部设置语言<br/>
+	   				title 		提示文字<br/>
+	   				tabindex 	用tab键移动光标时，可设置先后顺序<br/>
+	   							< input type="text" name="user" tabindex="2"><br/>
+	   				style       css样式<br/>
+		</p>
+	</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
